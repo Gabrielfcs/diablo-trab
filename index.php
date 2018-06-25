@@ -67,26 +67,35 @@
 				$sql = 'select * from `'.$dbname.'`.'.$tb_questions.' order by rand() limit 1;';
 				$result = mysqli_query($connection, $sql);
 				while ($row = mysqli_fetch_array($result)){
-					$question_text = $row['question_text'];
-					$answer_a = $row['answer_a'];
-					$answer_b = $row['answer_b'];
-					$answer_c = $row['answer_c'];
-					$answer_d = $row['answer_d'];
-					$answer_e = $row['answer_e'];
-					$correct_answer = $row['correct_answer'];
+					if(isset($row)){
+						$question_text = $row['question_text'];
+						$answer_a = $row['answer_a'];
+						$answer_b = $row['answer_b'];
+						$answer_c = $row['answer_c'];
+						$answer_d = $row['answer_d'];
+						$answer_e = $row['answer_e'];
+						$correct_answer = $row['correct_answer'];
+					}
 				}
 		?>
 		<div id="died-content">
 			<img id="died-img" src="sprite/died-title.png">
 			<div id="questions">
-				<span id="question"><?php echo $question_text ?></span>
-				<ul>
-					<li><input type="radio" name="answer" value="a"> A) <span><?php echo $answer_a?></span></li>
-					<li><input type="radio" name="answer" value="b"> B) <span><?php echo $answer_b?></span></li>
-					<li><input type="radio" name="answer" value="c"> C) <span><?php echo $answer_c?></span></li>
-					<li><input type="radio" name="answer" value="d"> D) <span><?php echo $answer_d?></span></li>
-					<li><input type="radio" name="answer" value="e"> E) <span><?php echo $answer_e?></span></li>     
-				</ul>
+				<?php 
+				if(isset($question_text)){
+					echo '<span id="question">'.$question_text.'</span>
+								<ul>
+									<li><input type="radio" name="answer" value="a"> A) <span>'.$answer_a.'</span></li>
+									<li><input type="radio" name="answer" value="b"> B) <span>'.$answer_b.'</span></li>
+									<li><input type="radio" name="answer" value="c"> C) <span>'.$answer_c.'</span></li>
+									<li><input type="radio" name="answer" value="d"> D) <span>'.$answer_d.'</span></li>
+									<li><input type="radio" name="answer" value="e"> E) <span>'.$answer_e.'</span></li>     
+								</ul>';
+				} else {
+					echo '<p>No questions avaible!!</p>';
+					echo '<p>Please, try again later.</p>';
+				}
+				?>
 			</div>
 		</div>
 	</div>
