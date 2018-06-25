@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-	header('Content-type: text/html; charset=utf-8');
-	include 'connect/connect.php';
+	// header('Content-type: text/html; charset=utf-8');
+	include 'functions.php';
 ?>
 <html>
 <head>
@@ -58,44 +58,22 @@
 		li {
 			list-style: none;
 		}
+		.winner-text {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			font-size: 3em;
+		}
 	</style>
+	<script src="jquery-3.3.1.min.js"></script>
 </head>
 <body>
 	<div class="page">
 		<canvas id="floor" width="980" height="661" style="position: fixed;"></canvas>
-		<?php 
-				$sql = 'select * from `'.$dbname.'`.'.$tb_questions.' order by rand() limit 1;';
-				$result = mysqli_query($connection, $sql);
-				while ($row = mysqli_fetch_array($result)){
-					if(isset($row)){
-						$question_text = $row['question_text'];
-						$answer_a = $row['answer_a'];
-						$answer_b = $row['answer_b'];
-						$answer_c = $row['answer_c'];
-						$answer_d = $row['answer_d'];
-						$answer_e = $row['answer_e'];
-						$correct_answer = $row['correct_answer'];
-					}
-				}
-		?>
 		<div id="died-content">
 			<img id="died-img" src="sprite/died-title.png">
 			<div id="questions">
-				<?php 
-				if(isset($question_text)){
-					echo '<span id="question">'.$question_text.'</span>
-								<ul>
-									<li><input type="radio" name="answer" value="a"> A) <span>'.$answer_a.'</span></li>
-									<li><input type="radio" name="answer" value="b"> B) <span>'.$answer_b.'</span></li>
-									<li><input type="radio" name="answer" value="c"> C) <span>'.$answer_c.'</span></li>
-									<li><input type="radio" name="answer" value="d"> D) <span>'.$answer_d.'</span></li>
-									<li><input type="radio" name="answer" value="e"> E) <span>'.$answer_e.'</span></li>     
-								</ul>';
-				} else {
-					echo '<p>No questions avaible!!</p>';
-					echo '<p>Please, try again later.</p>';
-				}
-				?>
 			</div>
 		</div>
 	</div>

@@ -683,7 +683,33 @@
                             if(this.name == "BA") {
                                 document.getElementById("died-content").style.display = "block";
                                 document.getElementById("died-img").style.display = "block";
-                                hero.sprite.src = "monsters/BA/NU/blood.png";
+                                $.ajax({ 
+                                    url: 'functions.php',
+                                    data: {functiontocall: 'getQuestionFromDb'},
+                                    type: 'post',
+                                    success: function(questions) {
+                                        var parsedJson = jQuery.parseJSON(questions);
+                                        if (parsedJson.question_text.length > 0){
+                                            $('#questions').html('<span id="question">'+parsedJson.question_text+'</span><ul class="answers-list"><li><input type="radio" name="answer" value="a"> A) <span>'+parsedJson.answer_a+'</span></li><li><input type="radio" name="answer" value="b"> B) <span>'+parsedJson.answer_b+'</span></li><li><input type="radio" name="answer" value="c"> C) <span>'+parsedJson.answer_c+'</span></li><li><input type="radio" name="answer" value="d"> D) <span>'+parsedJson.answer_d+'</span></li><li><input type="radio" name="answer" value="e"> E) <span>'+parsedJson.answer_e+'</span></li></ul>')
+                                        } else{
+                                            $('#questions').html('<p>No questions avaible!!</p><p>Please, try again later.</p>');
+                                        }
+                                        $('input[type="radio"][name="answer"]').click(function(){
+                                            if($(this).val() == parsedJson.correct_answer ){
+                                                debugger;
+                                                $('#questions').html('<span class="winner-text">Congratulations!!</span>');
+                                                setTimeout(function() {
+                                                    $('#died-content').css('display', 'none');
+                                                    $('#died-img').css('display', 'none');
+                                                    $(this).prop('checked', false);
+                                                    // hero.sprite.src = "monsters/BA/NU/map.png";
+                                                    hero.health = 50;
+                                                }, 1000);
+                                            }
+                                        });
+                                    }
+                                });
+                                // hero.sprite.src = "monsters/BA/NU/blood.png";
                             }
                             this.health=0;
                             remove(monsters, this);
@@ -734,7 +760,7 @@
                     AgressiveMob.call(this,x,y,"BA");
                     this.attackOffset=40;
                     this.normalOffset=10;
-                    this.health=this.origin_health=50;//health size
+                    this.health=this.origin_health=100;//health size
                     this.belt={items:[], size:10};
                     this.st=16;
                     this.addToBelt=function(potion){
