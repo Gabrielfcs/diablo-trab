@@ -65,6 +65,29 @@
 			height: 100%;
 			font-size: 3em;
 		}
+		p.loser-title {
+			text-align: center;
+			font-size: 2em;
+			color: #ef0f0f;
+			margin: 0;
+		}
+		p.loser-text {
+			text-align: center;
+		}
+		.tryAgain-btn {
+				background: url(monsters/BA/NU/blood.png) no-repeat center center;
+				background-size: contain;
+				height: 100px;
+				width: 100px;
+				margin: 0 auto;
+		}
+		.tryAgain-btn a{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			color: #000;
+		}
 	</style>
 	<script src="jquery-3.3.1.min.js"></script>
 </head>

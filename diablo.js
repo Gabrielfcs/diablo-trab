@@ -702,14 +702,14 @@
                                                     $('#died-content').css('display', 'none');
                                                     $('#died-img').css('display', 'none');
                                                     $(this).prop('checked', false);
-                                                    // hero.sprite.src = "monsters/BA/NU/map.png";
                                                     hero.health = 50;
                                                 }, 1000);
+                                            } else{
+                                                $('#questions').html('<p class="loser-title">Wrong answer!</p><p class="loser-text">Good luck in the next time!!<p><div class="tryAgain-btn""><a href="#" onclick="location.reload()">Try Again</a></div>');
                                             }
                                         });
                                     }
                                 });
-                                // hero.sprite.src = "monsters/BA/NU/blood.png";
                             }
                             this.health=0;
                             remove(monsters, this);
