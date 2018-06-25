@@ -62,8 +62,8 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			height: 100%;
 			font-size: 3em;
+			margin-bottom: 30px;
 		}
 		p.loser-title {
 			text-align: center;

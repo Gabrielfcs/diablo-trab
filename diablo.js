@@ -696,14 +696,14 @@
                                         }
                                         $('input[type="radio"][name="answer"]').click(function(){
                                             if($(this).val() == parsedJson.correct_answer ){
-                                                debugger;
-                                                $('#questions').html('<span class="winner-text">Congratulations!!</span>');
-                                                setTimeout(function() {
+                                                $('#questions').html('<span class="winner-text">Congratulations!!</span><div class="tryAgain-btn""><a href="#">Start!</a></div>');
+                                                $('.tryAgain-btn').click(function(){
                                                     $('#died-content').css('display', 'none');
                                                     $('#died-img').css('display', 'none');
                                                     $(this).prop('checked', false);
                                                     hero.health = 50;
-                                                }, 1000);
+                                                    // goBackToTheGame()
+                                                });
                                             } else{
                                                 $('#questions').html('<p class="loser-title">Wrong answer!</p><p class="loser-text">Good luck in the next time!!<p><div class="tryAgain-btn""><a href="#" onclick="location.reload()">Try Again</a></div>');
                                             }
