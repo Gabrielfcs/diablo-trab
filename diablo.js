@@ -300,8 +300,8 @@
             if(m.attack && m.isAboveHero()){
                 if(Math.abs(hero.x-m.x)<attackDist &&
                 Math.abs(hero.y-m.y)<attackDist){
-                    // if(hero.health > 0){
-                    if(hero.health == 15000){
+                    // if(hero.health == 15000){
+                    if(hero.health > 0){
                         m.doAttack(hero);
                     }
                     m.to_x = m.x;
@@ -687,7 +687,6 @@
                     this.damage=function(damage){
                         var health=this.health - damage * 1000/(1000-this.resistance);
                         if(health<=0){
-                            // debugger;
                             if(this.name == "BA") {
                                 document.getElementById("died-content").style.display = "block";
                                 document.getElementById("died-img").style.display = "block";
@@ -709,8 +708,7 @@
                                                     $('#died-content').css('display', 'none');
                                                     $('#died-img').css('display', 'none');
                                                     $(this).prop('checked', false);
-                                                    hero.health = 50;
-                                                    // goBackToTheGame()
+                                                    hero.health = 150;
                                                 });
                                             } else{
                                                 $('#questions').html('<p class="loser-title">Wrong answer!</p><p class="loser-text">Good luck in the next time!!<p><div class="tryAgain-btn""><a href="#" onclick="location.reload()">Try Again</a></div>');
@@ -768,7 +766,7 @@
                     AgressiveMob.call(this,x,y,"BA");
                     this.attackOffset=40;
                     this.normalOffset=10;
-                    this.health=this.origin_health=100;//health size
+                    this.health=this.origin_health=1000;//health size
                     this.belt={items:[], size:10};
                     this.st=16;
                     this.addToBelt=function(potion){
