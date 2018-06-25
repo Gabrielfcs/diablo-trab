@@ -1,7 +1,12 @@
 <!DOCTYPE html>
+<?php
+	header('Content-type: text/html; charset=utf-8');
+	include 'connect/connect.php';
+?>
 <html>
 <head>
 	<title>Diablo</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<style>
 		html, body, canvas{
 			margin: 0;
@@ -58,23 +63,33 @@
 <body>
 	<div class="page">
 		<canvas id="floor" width="980" height="661" style="position: fixed;"></canvas>
+		<?php 
+				$sql = 'select * from `'.$dbname.'`.'.$tb_questions.' order by rand() limit 1;';
+				$result = mysqli_query($connection, $sql);
+				while ($row = mysqli_fetch_array($result)){
+					$question_text = $row['question_text'];
+					$answer_a = $row['answer_a'];
+					$answer_b = $row['answer_b'];
+					$answer_c = $row['answer_c'];
+					$answer_d = $row['answer_d'];
+					$answer_e = $row['answer_e'];
+					$correct_answer = $row['correct_answer'];
+				}
+		?>
 		<div id="died-content">
 			<img id="died-img" src="sprite/died-title.png">
 			<div id="questions">
-				<span id="question">The question is how we resolve this questions, so this questions needs one answer, please answer!!</span>
+				<span id="question"><?php echo $question_text ?></span>
 				<ul>
-					<li><input type="radio" name="answer"> A) answer 1</li>
-					<li><input type="radio" name="answer"> B) answer 2</li>
-					<li><input type="radio" name="answer"> C) answer 3</li>
-					<li><input type="radio" name="answer"> D) answer 4</li>
-					<li><input type="radio" name="answer"> E) answer 5</li>     
+					<li><input type="radio" name="answer" value="a"> A) <span><?php echo $answer_a?></span></li>
+					<li><input type="radio" name="answer" value="b"> B) <span><?php echo $answer_b?></span></li>
+					<li><input type="radio" name="answer" value="c"> C) <span><?php echo $answer_c?></span></li>
+					<li><input type="radio" name="answer" value="d"> D) <span><?php echo $answer_d?></span></li>
+					<li><input type="radio" name="answer" value="e"> E) <span><?php echo $answer_e?></span></li>     
 				</ul>
 			</div>
 		</div>
-		<!-- <p>Isometric minimal-code style game at html5 canvas and javascript.</p> -->
-		<!-- <p>See more at <a href="https://github.com/mitallast/diablo-js">github</a></p> -->
 	</div>
-	<script>/*window.onerror=alert*/</script>
 	<script src="diablo.js"></script>
 </body>
 </html>

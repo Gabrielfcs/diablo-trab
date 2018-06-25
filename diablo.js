@@ -679,7 +679,7 @@
                     this.damage=function(damage){
                         var health=this.health - damage * 1000/(1000-this.resistance);
                         if(health<=0){
-                            debugger;
+                            // debugger;
                             if(this.name == "BA") {
                                 document.getElementById("died-content").style.display = "block";
                                 document.getElementById("died-img").style.display = "block";
