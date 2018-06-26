@@ -35,7 +35,7 @@ a{
   background: rgba(0,0,0,0.4)
 }
 #questions {
-  background: url("sprite/papyrus-3.png") no-repeat center center;
+  background: url("../sprite/papyrus-3.png") no-repeat center center;
   background-size: contain;
   display:  block;
   position:  relative;
@@ -65,7 +65,7 @@ p.loser-text {
   text-align: center;
 }
 .tryAgain-btn {
-  background: url(monsters/BA/NU/blood.png) no-repeat center center;
+  background: url("../monsters/BA/NU/blood.png") no-repeat center center;
   background-size: contain;
   height: 100px;
   width: 100px;
